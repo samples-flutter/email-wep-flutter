@@ -11,9 +11,12 @@ import 'email_card.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ListOfEmails extends StatefulWidget {
+  final List<Email> emails;
+
   // Press "Command + ."
   const ListOfEmails({
     Key? key,
+    required this.emails,
   }) : super(key: key);
 
   @override
@@ -110,17 +113,17 @@ class _ListOfEmailsState extends State<ListOfEmails> {
               const SizedBox(height: kDefaultPadding),
               Expanded(
                 child: ListView.builder(
-                  itemCount: emails.length,
+                  itemCount: widget.emails.length,
                   // On mobile this active dosen't mean anything
                   itemBuilder: (context, index) => EmailCard(
                     isActive: Responsive.isMobile(context) ? false : index == 0,
-                    email: emails[index],
+                    email: widget.emails[index],
                     press: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              EmailScreen(email: emails[index]),
+                              EmailScreen(email: widget.emails[index]),
                         ),
                       );
                     },

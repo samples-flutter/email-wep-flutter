@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class Email {
@@ -14,8 +13,18 @@ class Email {
     required this.subject,
     required this.body,
     required this.isAttachmentAvailable,
-     this.tagColor,
+    this.tagColor,
   });
+
+  Email.fromJson(Map<String, dynamic> json)
+      : name = 'anyOne',
+        body = json['body'],
+        subject = json['title'],
+        isAttachmentAvailable = true,
+        isChecked = false,
+        image = 'assets/images/user_1.png',
+        time = 'Now',
+        tagColor = null;
 }
 
 List<Email> emails = List.generate(
